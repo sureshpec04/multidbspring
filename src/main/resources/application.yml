@@ -1,0 +1,119 @@
+spring:
+  profiles:
+    active:
+      - dev
+    # - test
+    # - eap7
+
+# dev profile runs in local server with DB parameters driver, url, username and password    
+# test profile uses the JNDI datasource configured in App Servers such as Tomcat
+# eap7 profile uses the JNDI datasource configured in JBOSS/Red Hat EAP 7  
+---
+spring:
+  profiles: test
+ 
+# JNDI lookup names for all database
+main:
+  db:
+    jndi: java:comp/env/jdbc/GeicoDB
+
+second:
+  db:
+     jndi: java:comp/env/jdbc/UsaaDB
+
+third:
+  db:
+     jndi: java:comp/env/jdbc/NationwideDB    
+---
+
+spring:
+  profiles: eap7
+ 
+# JNDI lookup names for all database
+main:
+  db:
+    jndi: java:jboss/datasources/GeicoDB
+
+second:
+  db:
+     jndi: java:jboss/datasources/UsaaDB
+
+third:
+  db:
+     jndi: java:jboss/datasources/NationwideDB    
+---
+
+spring:
+  profiles: dev , default
+ 
+#Main Database Connection
+main:
+  db:
+    driver: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1/tenant_a?useSSL=false
+    username: devuser
+    password: devuser1
+
+#Second Database Connection
+second:
+  db:
+    driver: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1/tenant_b?useSSL=false
+    username: devuser
+    password: devuser1
+
+#Third Database Connection
+third:
+  db:
+    driver: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1/tenant_c?useSSL=false
+    username: devuser
+    password: devuser1        
+
+---
+
+spring:
+  profiles: stage
+    
+# Fill the environment specific DB parameters
+
+---
+
+spring:
+  profiles: prod
+
+# Fill the environment specific DB parameters  
+
+---
+
+# common configs for all environments
+
+spring:
+  jackson:
+    serialization:
+      indent-output: true
+  jpa:
+    open-in-view: false
+    
+logging:
+  level:
+    org.springframework.data.rest.webmvc.RepositoryRestHandlerMapping: WARN
+
+server:
+  port: 8082
+  servlet:
+    context-path: /multidbspring       
+    
+hibernate:
+  dialect: org.hibernate.dialect.MySQL5Dialect
+  ddl-auto: none
+  show_sql: false
+  format_sql: false
+
+entitymanager:
+  packages:
+    to:
+      scan: com.example
+      
+connection: 
+  release_mode: auto
