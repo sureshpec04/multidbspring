@@ -61,7 +61,7 @@ Server.xml:
       maxWaitMillis="10000"/>
 
 	
- </GlobalNamingResources>
+ 	</GlobalNamingResources>
       
       
   Context.xml:
@@ -80,10 +80,11 @@ Server.xml:
                 global="jdbc/NationwideDB"
                 auth="Container"
                 type="javax.sql.DataSource" />
-</Context>
+	</Context>
 
 Data Source configuration in EAP 7 standalone.xml:
-<subsystem xmlns="urn:jboss:domain:datasources:5.0">
+
+	<subsystem xmlns="urn:jboss:domain:datasources:5.0">
             <datasources>
                 <datasource jndi-name="java:jboss/datasources/GeicoDB" pool-name="GeicoDB" enabled="true" use-java-context="true">
                     <connection-url>jdbc:mysql://localhost:3306/tenant_a</connection-url>
@@ -93,14 +94,14 @@ Data Source configuration in EAP 7 standalone.xml:
                         <password>devuser1</password>
                     </security>
                 </datasource>
-  </datasources>
+  	</datasources>
   
   Add a new module.xml file for my sql if not already done:
   
-  <module xmlns="urn:jboss:module:1.5" name="com.mysql">
-    <properties>
+  	<module xmlns="urn:jboss:module:1.5" name="com.mysql">
+   	 <properties>
         <property name="jboss.api" value="unsupported"/>
-    </properties>
+    	</properties>
 
     <resources>
         <resource-root path="mysql-connector-java-5.1.46-bin.jar"/>
@@ -109,6 +110,6 @@ Data Source configuration in EAP 7 standalone.xml:
         <module name="javax.api"/>
         <module name="javax.transaction.api"/>
     </dependencies>
-</module>
+	</module>
 
 Note: Ensure mysql connector jar is available in module path based on the mysql version. Same is the case for Tomcat app server. It should be in $tomcat_home/lib.
