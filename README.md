@@ -36,7 +36,7 @@ Server.xml:
       minIdle="5" 
       maxWaitMillis="10000"/>
   
-   <Resource name="jdbc/UsaaDB" 
+   	<Resource name="jdbc/UsaaDB" 
       auth="Container" 
       type="javax.sql.DataSource" 
       driverClassName="com.mysql.jdbc.Driver" 
@@ -48,7 +48,7 @@ Server.xml:
       minIdle="5" 
       maxWaitMillis="10000"/>
 
-<Resource name="jdbc/NationwideDB" 
+	<Resource name="jdbc/NationwideDB" 
       auth="Container" 
       type="javax.sql.DataSource" 
       driverClassName="com.mysql.jdbc.Driver" 
@@ -68,7 +68,7 @@ Server.xml:
   
   <Context>
 
-   <ResourceLink name="jdbc/GeicoDB"
+   	<ResourceLink name="jdbc/GeicoDB"
                 global="jdbc/GeicoDB"
                 auth="Container"
                 type="javax.sql.DataSource" />
