@@ -68,10 +68,6 @@ Server.xml:
   
   <Context>
 
-    <WatchedResource>WEB-INF/web.xml</WatchedResource>
-    <WatchedResource>WEB-INF/tomcat-web.xml</WatchedResource>
-    <WatchedResource>${catalina.base}/conf/web.xml</WatchedResource>
-
    <ResourceLink name="jdbc/GeicoDB"
                 global="jdbc/GeicoDB"
                 auth="Container"
